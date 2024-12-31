@@ -95,8 +95,11 @@ impl<'tcx> LateLintPass<'tcx> for StateScopedEntities {
             return;
         };
 
-        //only need to check for .spawn() on Commands and not ChildBuilder since the despawn is recursive
-        if variant.ident(ctx.tcx).name != Symbol::intern("Commands") {
+        //only need to check for .spawn() on Commands and World and not ChildBuilder since the despawn is recursive
+        //I don't care about the other spawn methods right now to be honest
+        if variant.ident(ctx.tcx).name != Symbol::intern("Commands")
+            && variant.ident(ctx.tcx).name != Symbol::intern("World")
+        {
             return;
         }
 
@@ -108,7 +111,7 @@ impl<'tcx> LateLintPass<'tcx> for StateScopedEntities {
                 ctx,
                 STATE_SCOPED_ENTITIES,
                 expr_span,
-                "Commands::spawn() call is missing StateScoped component",
+                "spawn() call is missing StateScoped component",
                 None,
                 "add a StateScoped() component",
             );

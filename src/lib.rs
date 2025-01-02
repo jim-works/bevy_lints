@@ -5,7 +5,7 @@
 // extern crate rustc_ast;
 // extern crate rustc_ast_pretty;
 // extern crate rustc_data_structures;
-extern crate rustc_errors;
+// extern crate rustc_errors;
 extern crate rustc_hir;
 // extern crate rustc_hir_pretty;
 // extern crate rustc_index;
@@ -18,8 +18,7 @@ extern crate rustc_span;
 // extern crate rustc_target;
 // extern crate rustc_trait_selection;
 
-use clippy_utils::{diagnostics::span_lint_and_help, is_diag_trait_item, source::snippet};
-use rustc_errors::Applicability;
+use clippy_utils::diagnostics::span_lint_and_help;
 use rustc_hir::{Expr, ExprKind};
 use rustc_lint::{LateContext, LateLintPass};
 use rustc_middle::lint::in_external_macro;
